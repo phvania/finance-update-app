@@ -12,3 +12,23 @@
     border: 1px solid #eee;
     padding: 10px;
 }
+
+.other-news {
+    width: 600px;
+    height: 150px;
+    white-space: nowrap;
+    overflow-x: auto;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    margin-top: 30px;
+}
+.other-cont {
+    display: inline-block;
+    padding: 15px;
+    border: 1px solid #ddd;
+    width: 200px;
+    height: 50%;
+    border-radius: 15px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
