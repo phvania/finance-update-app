@@ -47,7 +47,7 @@ fetchNewsData().then(newsArticles => {
 // Add script that will pull news data and populate it into a small scrollable bar under the main display
 
 function fetchGnewsSearch() {
-let apiKey = 'c4f80c001d11db5f507256c8b1a12be4';
+let apiKey = '776397213a7853bd2cde47a8d5d0d109';
 let apiUrl = 'https://gnews.io/api/v4/top-headlines?category=business&lang=en&apikey=' + apiKey;
 
 fetch(apiUrl)
@@ -59,14 +59,14 @@ fetch(apiUrl)
     })
     .then(function (data) {
         console.log(data)
-        displayCurrentWeather(data)
+        displayOtherNews(data)
     })
     .catch(function (error) {
         console.error('Fetch error:', error);
     });
 }
 
-function displayCurrentWeather(data) {
+function displayOtherNews(data) {
     document.getElementById("other1").textContent = data.articles[5].title;
     document.getElementById("other2").textContent = data.articles[6].title;
     document.getElementById("other3").textContent = data.articles[7].title;
