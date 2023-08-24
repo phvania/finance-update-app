@@ -93,7 +93,34 @@ function autoScrollHeader(data) {
         data.articles[3].title,
         data.articles[4].title
     ];
+ayhaams-branch
+function fetchGnewsSearch() {
+let apiKey = '776397213a7853bd2cde47a8d5d0d109';
+let apiUrl = 'https://gnews.io/api/v4/top-headlines?category=business&lang=en&apikey=' + apiKey;
 
+fetch(apiUrl)
+    .then(function (response) {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(function (data) {
+        console.log(data)
+        displayOtherNews(data)
+    })
+    .catch(function (error) {
+        console.error('Fetch error:', error);
+    });
+}
+
+function displayOtherNews(data) {
+    document.getElementById("other1").textContent = data.articles[5].title;
+    document.getElementById("other2").textContent = data.articles[6].title;
+    document.getElementById("other3").textContent = data.articles[7].title;
+    document.getElementById("other4").textContent = data.articles[8].title;
+    document.getElementById("other5").textContent = data.articles[9].title;
+  
     document.getElementById("header-news").textContent = newsTitles[scrollIndex];
 
     scrollIndex = (scrollIndex + 1) % newsTitles.length;
@@ -121,6 +148,7 @@ function createArticleElement(article) {
     articleElement.appendChild(newsDescription);
 
     return articleElement;
+main
 }
 
 //function mainDisplayResults(data) {

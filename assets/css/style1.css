@@ -1,47 +1,75 @@
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #575353;
-        }
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #575353;
+}
 
-        header {
-            background-image: linear-gradient(darkgray, black);
-            color: white;
-            text-align: center;
-            padding: 1em;
-        }
+header {
+    background-image: linear-gradient(darkgray, black);
+    color: white;
+    text-align: center;
+    padding: 1em;
+}
 
-        .search-container {
-            text-align: center;
-            padding: 3em 0;
-        }
+.search-container {
+    text-align: center;
+    padding: 3em 0;
+}
 
-        .search-bar {
-            width: 80%;
-            max-width: 600px;
-            padding: 1em;
-            font-size: 1.2em;
-            border-radius: 15px;
-        }
+.search-bar {
+    width: 80%;
+    max-width: 600px;
+    padding: 1em;
+    font-size: 1.2em;
+    border-radius: 15px;
+}
 
-        .search-button {
-            padding: 0.5em 1em;
-            font-size: 1.2em;
-            background-color: #333;
-            color: white;
-            border: none;
-            cursor: pointer;
-            border-radius: 15px;
-            height: 60px;
-        }
+.search-button {
+    padding: 0.5em 1em;
+    font-size: 1.2em;
+    background-color: #333;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 15px;
+    height: 60px;
+}
 
-        .search-results {
-            text-align: center;
-            padding: 2em 0;
-        }
+.search-results {
+    text-align: center;
+    padding: 2em 0;
+}
 
-        .search-button:hover {
-            color: orange;
-            box-shadow: 0 5px 15px rgba(145, 92, 182, .4);
-        }
+.search-button:hover {
+    color: orange;
+    box-shadow: 0 5px 15px rgba(145, 92, 182, .4);
+}
+
+.news-item {
+    height: 250px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin: 15px;
+    border-radius: 15px;
+}
+
+.titleEl {
+    border: solid black 1px;
+    color: azure;
+    background-color: rgba(128, 128, 128, 0.5);
+    padding: 10px;
+}
+
+.descEl {
+    background-color: rgba(128, 128, 128, 0.75);
+    color: azure;
+    display: none;
+    background-image: linear-gradient(darkgray, black);
+    margin-top: auto;
+}
+
+.titleEl:hover + .descEl {
+    display: block;
+}
