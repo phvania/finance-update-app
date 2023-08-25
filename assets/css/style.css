@@ -132,6 +132,8 @@ margin-left: 1200px;
 }
 
 .otherTitle a:hover {
+    overflow: visible;
+    white-space: normal;
+}
     
 }
-

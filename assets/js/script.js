@@ -12,6 +12,23 @@ function changeColorGreeen() {
 
 }
 
+    fetch(apiUrl)
+        .then(function (response) {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(function (data) {
+            console.log(data);
+            addNewsStory(data);
+            displayOther(data);
+        })
+        .catch(function (error) {
+            console.error('Fetch error:', error);
+        });
+        
+
 function flashText() {
     const oElem = document.getElementById(currentTime);
     oElem.className = oElem.className ==="open"? "stop" : "open";
@@ -21,6 +38,7 @@ function changeColorOrange() {
     clearInterval(nIntervalID);
     //release our intervalID from the variable
     nIntervalID = null;
+
 }
 
 document.getElementById("open").addEventListener("click",changeColorGreeen);
