@@ -61,5 +61,6 @@
 }
 
 .otherTitle a:hover {
-    
+    overflow: visible;
+    white-space: normal;
 }

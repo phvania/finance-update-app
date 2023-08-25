@@ -13,7 +13,8 @@ function fetchGnewsSearch() {
         })
         .then(function (data) {
             console.log(data);
-            addNewsStory(data)
+            addNewsStory(data);
+            displayOther(data);
         })
         .catch(function (error) {
             console.error('Fetch error:', error);
