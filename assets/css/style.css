@@ -2,14 +2,17 @@
     width: 300px;
     height: 200px;
     overflow: auto;
-    border: 1px solid #ccc;
+    border: 1px solid;
     padding: 10px;
+    color: #ddd;
+    background-color: #25117c;
 }
 
 .news-item {
     margin-bottom: 20px;
-    border: 1px solid #eee;
+    border: 1px solid ;
     padding: 10px;
+    
 }
 
 .other-news {
@@ -17,8 +20,8 @@
     height: 150px;
     white-space: nowrap;
     overflow-x: auto;
-    border: 1px solid #ccc;
-    border-radius: 15px;
+    border: 1px solid ;
+    border-radius: 15px; 
     margin-top: 30px;
 }
 .other-cont {
