@@ -2,7 +2,7 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #575353;
+    background-color: #5b5b5e;
 }
 
 header {
@@ -23,6 +23,7 @@ header {
     padding: 1em;
     font-size: 1.2em;
     border-radius: 15px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 1);
 }
 
 .search-button {
@@ -34,11 +35,16 @@ header {
     cursor: pointer;
     border-radius: 15px;
     height: 60px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 1);
+    margin: 5px;
 }
 
 .search-results {
     text-align: center;
     padding: 2em 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
 }
 
 .search-button:hover {
@@ -53,10 +59,11 @@ header {
     flex-direction: column;
     margin: 15px;
     border-radius: 15px;
+    flex: 0 0 calc(50% - 10px);
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 1);
 }
 
 .titleEl {
-    border: solid black 1px;
     color: azure;
     background-color: rgba(128, 128, 128, 0.5);
     padding: 10px;
@@ -64,12 +71,19 @@ header {
 
 .descEl {
     background-color: rgba(128, 128, 128, 0.75);
-    color: azure;
-    display: none;
-    background-image: linear-gradient(darkgray, black);
+    color: white;
+    visibility: hidden;
     margin-top: auto;
+    opacity: 0;
+    padding: 10px;
 }
 
-.titleEl:hover + .descEl {
-    display: block;
+.news-item a:hover + .descEl {
+    visibility: visible;
+    opacity: 1;
+    transition: all 0.5s ease-in;
+}
+
+.news-item a {
+    text-decoration: none;
 }
