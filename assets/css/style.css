@@ -39,13 +39,27 @@
     width: 200px;
     height: 115px;
     border-radius: 15px;
-    overflow: hidden;
-    text-overflow: ellipsis;
     background-size: cover; /* Ensure background image covers the div */
     background-position: center;
 }
 
 .other-cont:hover {
-    opacity: 50%;
+    opacity: 80%;
     color: black;
+}
+
+.otherTitle {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    border: solid white 2px;
+    background-color: white;
+    color: black;
+}
+
+.otherTitle a {
+    text-decoration: none;
+}
+
+.otherTitle a:hover {
+    
 }
