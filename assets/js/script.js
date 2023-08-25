@@ -1,7 +1,7 @@
 // script.js
 
 function fetchGnewsSearch() {
-    let apiKey = '776397213a7853bd2cde47a8d5d0d109';
+    let apiKey = '51618f13bb4d86b0dab9c98a7263a01a';
     let apiUrl = 'https://gnews.io/api/v4/top-headlines?category=business&lang=en&apikey=' + apiKey;
 
     fetch(apiUrl)
@@ -13,11 +13,12 @@ function fetchGnewsSearch() {
         })
         .then(function (data) {
             console.log(data);
-            displayOther(data);
+            addNewsStory(data)
         })
         .catch(function (error) {
             console.error('Fetch error:', error);
         });
+        
 }
 
 const autoscrollContainer = document.querySelector('.autoscroll-container');
@@ -26,9 +27,10 @@ function scrollToBottom() {
     autoscrollContainer.scrollTop = autoscrollContainer.scrollHeight;
 }
 
-function addNewsStory(title, content) {
-    const newsItem = document.createElement('div');
-    newsItem.classList.add('news-item');
+function addNewsStory(data) {
+    const newsItem = document.querySelector('.main-title');
+    newsItem.textContent = data.articles[0].title
+   /* newsItem.classList.add('news-item');
 
     const newsTitle = document.createElement('h2');
     newsTitle.textContent = title;
@@ -41,7 +43,7 @@ function addNewsStory(title, content) {
 
     autoscrollContainer.appendChild(newsItem);
 
-    scrollToBottom();
+    scrollToBottom();*/
 }
 
 // Fetch news data and populate the main display
@@ -90,14 +92,7 @@ function autoScrollHeader(data) {
 } else {scrollIndex++}
 }
 
-// Display news in the "Other News" section
-function displayOtherNews(data) {
-    document.getElementById("other1").textContent = data.articles[5].title;
-    document.getElementById("other2").textContent = data.articles[6].title;
-    document.getElementById("other3").textContent = data.articles[7].title;
-    document.getElementById("other4").textContent = data.articles[8].title;
-    document.getElementById("other5").textContent = data.articles[9].title;
-}
+
 
 fetchGnewsSearch();
 
