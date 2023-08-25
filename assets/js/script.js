@@ -125,7 +125,7 @@ function addNewsStory(title, content) {
     scrollToBottom();
 }
 
-function mainDisplay() {
+/*function mainDisplay() {
     let apiKey = 'c4f80c001d11db5f507256c8b1a12be4';
     let apiUrl = 'https://gnews.io/api/v4/top-headlines?category=business&lang=en&apikey=' + apiKey;
 
@@ -148,7 +148,7 @@ function mainDisplay() {
             console.log(data.articles[i])
         }
 }
-mainDisplay()
+mainDisplay()*/
 
 function fetchGnewsSearch() {
     let apiKey = 'c4f80c001d11db5f507256c8b1a12be4';
@@ -172,11 +172,24 @@ function fetchGnewsSearch() {
 fetchGnewsSearch();
 
 function displayOther(data) {
-    document.getElementById("other1").textContent = data.articles[5].title;
-    document.getElementById("other2").textContent = data.articles[6].title;
-    document.getElementById("other3").textContent = data.articles[7].title;
-    document.getElementById("other4").textContent = data.articles[8].title;
-    document.getElementById("other5").textContent = data.articles[9].title;
+    let other1Img = document.getElementById("other1")
+    let other2Img = document.getElementById("other2")
+    let other3Img = document.getElementById("other3")
+    let other4Img = document.getElementById("other4")
+    let other5Img = document.getElementById("other5")
+
+    other1Img.textContent = data.articles[5].title;
+    other2Img.textContent = data.articles[6].title;
+    other3Img.textContent = data.articles[7].title;
+    other4Img.textContent = data.articles[8].title;
+    other5Img.textContent = data.articles[9].title;
+    
+    
+    other1Img.style.backgroundImage = `url(${data.articles[5].image})`;
+    other2Img.style.backgroundImage = `url(${data.articles[6].image})`;
+    other3Img.style.backgroundImage = `url(${data.articles[7].image})`;
+    other4Img.style.backgroundImage = `url(${data.articles[8].image})`;
+    other5Img.style.backgroundImage = `url(${data.articles[9].image})`;
 }
 
 
@@ -193,7 +206,7 @@ function autoScrollHeader(data) {
         data.articles[4].title
     ]};
 
-function fetchGnewsSearch() {
+function fetchNewsSearch() {
 let apiKey = 'c4f80c001d11db5f507256c8b1a12be4';
 let apiUrl = 'https://gnews.io/api/v4/top-headlines?category=business&lang=en&apikey=' + apiKey;
 
@@ -206,14 +219,14 @@ fetch(apiUrl)
     })
     .then(function (data) {
         console.log(data)
-        displayOtherNews(data)
+        //displayOtherNews(data)
     })
     .catch(function (error) {
         console.error('Fetch error:', error);
     });
 }
 
-function displayOtherNews(data) {
+/*function displayOtherNews(data) {
     document.getElementById("other1").textContent = data.articles[5].title;
     document.getElementById("other2").textContent = data.articles[6].title;
     document.getElementById("other3").textContent = data.articles[7].title;
@@ -223,7 +236,7 @@ function displayOtherNews(data) {
     document.getElementById("header-news").textContent = newsTitles[scrollIndex];
 
     scrollIndex = (scrollIndex + 1) % newsTitles.length;
-}
+}*/
 
 
 
@@ -249,4 +262,4 @@ function createArticleElement(article) {
     return articleElement;
 }
 
-} */
+

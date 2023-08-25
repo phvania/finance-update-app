@@ -3,27 +3,10 @@ let searchBar = document.querySelector("search-bar");
 let apiKey = '776397213a7853bd2cde47a8d5d0d109';
 let apiUrl = 'https://gnews.io/api/v4/search?q=stocks&category=business&lang=en&apikey=' + apiKey;
 
-/*function fetchGnewsSearch() {
-    fetch(apiUrl)
-        .then(function (response) {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json();
-        })
-        .then(function (data) {
-            console.log(data)
-            displayOtherNews(data)
-        })
-        .catch(function (error) {
-            console.error('Fetch error:', error);
-        });
-}*/
-
-//searchButton.addEventListener("click", fetchGnewsSearch);
-
+// function that will populate each search result under the search bar
 function displayOtherNews(data) {
     let results = document.querySelector(".search-results");
+    results.innerHTML = '';
     for (let i = 0; i < data.articles.length; i++) {
         let resultEl = document.createElement("div");
         resultEl.className = "news-item";
@@ -31,19 +14,24 @@ function displayOtherNews(data) {
         titleEl.className = "titleEl";
         let descEl = document.createElement("p");
         descEl.className = "descEl";
+        let articleLink = document.createElement("a");
 
-        resultEl.appendChild(titleEl);
+        resultEl.appendChild(articleLink);
         resultEl.appendChild(descEl);
         results.appendChild(resultEl);
 
+
         titleEl.textContent = data.articles[i].title;
         descEl.textContent = data.articles[i].description;
+        articleLink.href = data.articles[i].url;
+        articleLink.target = "_blank";
+        articleLink.appendChild(titleEl);
 
         resultEl.style.backgroundImage = `url(${data.articles[i].image})`;
-        resultEl.style.backgroundSize = "cover 100%";
     }
 }
 
+// event listener that will capture the user input in the search field
 searchButton.addEventListener("click", function (event) {
     event.preventDefault();
   
