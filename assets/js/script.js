@@ -13,11 +13,12 @@ function fetchGnewsSearch() {
         })
         .then(function (data) {
             console.log(data);
-            displayOther(data);
+            addNewsStory(data)
         })
         .catch(function (error) {
             console.error('Fetch error:', error);
         });
+        
 }
 
 const autoscrollContainer = document.querySelector('.autoscroll-container');
@@ -26,9 +27,10 @@ function scrollToBottom() {
     autoscrollContainer.scrollTop = autoscrollContainer.scrollHeight;
 }
 
-function addNewsStory(title, content) {
-    const newsItem = document.createElement('div');
-    newsItem.classList.add('news-item');
+function addNewsStory(data) {
+    const newsItem = document.querySelector('.main-title');
+    newsItem.textContent = data.articles[0].title
+   /* newsItem.classList.add('news-item');
 
     const newsTitle = document.createElement('h2');
     newsTitle.textContent = title;
@@ -41,7 +43,7 @@ function addNewsStory(title, content) {
 
     autoscrollContainer.appendChild(newsItem);
 
-    scrollToBottom();
+    scrollToBottom();*/
 }
 
 // Fetch news data and populate the main display
