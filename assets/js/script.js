@@ -2,6 +2,7 @@
 
 const autoscrollContainer = document.querySelector('.autoscroll-container');
 
+
 function scrollToBottom() {
     autoscrollContainer.scrollTop = autoscrollContainer.scrollHeight;
 }
@@ -190,8 +191,8 @@ function autoScrollHeader(data) {
         data.articles[2].title,
         data.articles[3].title,
         data.articles[4].title
-    ];
-ayhaams-branch
+    ]};
+
 function fetchGnewsSearch() {
 let apiKey = 'c4f80c001d11db5f507256c8b1a12be4';
 let apiUrl = 'https://gnews.io/api/v4/top-headlines?category=business&lang=en&apikey=' + apiKey;
@@ -246,7 +247,6 @@ function createArticleElement(article) {
     articleElement.appendChild(newsDescription);
 
     return articleElement;
-main
 }
 
 } */
