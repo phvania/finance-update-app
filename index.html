@@ -9,9 +9,10 @@
 <body>
     <nav> <!--header start here-->
     <header>
-    <h1> FINANCE-UPDATE-APP  </h1>  </header> 
+      <h1>FINANCE-UPDATE-APP</h1>  
+    </header>
+      
     <!--- current date and time-->
-    
     <p class="today" id="todayDate"> </p><p class="time" id="currentTime"></p>
     <!-- time will be green  when stock market open it will be orange when stock market close-->
     <div id="currentTime">
@@ -23,77 +24,52 @@
     
 
 <!-- extra search button is here-->
-
-     <div class=" search-container"></div>
-     <input type="text" placeholder="search..." name="search">
-      <button type ="submit"> <i class="fa fa-search"></i></button></nav>
-
-
-  
-      
-        
-
-   
-
-
-
-
-
-    
+<div class=" search-container"></div>
+<input type="text" placeholder="search..." name="search">
+<button type ="submit"> <i class="fa fa-search"></i></button></nav>
 
 
 <!-- The sidebar-->
-
 <div class="right"></div>
 <div class="sidebar">
-    <input type="text" id="input"> <button id="serchbtn">search</button> <!--</div>-->
-
-    <!--<div class="sidebar">-->
-
-        <p class="s1"> stock 1</p>
-        <p class="s2"> Stock 2 </p>
-            <p class="s3">Stock 3 </p>
-            <p class="s4"> Stock 4</p>
- 
-            <p class="s5"> Stock5</p>
+    <input type="text" id="input"> <button id="serchbtn">search</button>
+        <p class="s1"> Stock 1</p>
+        <p class="s2"> Stock 2</p>
+        <p class="s3"> Stock 3</p>
+        <p class="s4"> Stock 4</p>
+        <p class="s5"> Stock 5</p>
+ </div>
+    <div class="autoscroll-container">
+        <div class="news-item">
+            <h2 class="main-title">Article Title</h2>
+            <img src="article-image.jpg" alt="Article Image">
+            <p>Article content goes here...</p>
+        </div>
     </div>
-
-  
-      <div class="autoscroll-container">
-        <p>This is some content...</p>
-        <!-- Add more content here -->
-    </div>
+    <div id="header-news" class="header-news"></div>
     <div class="other-news">
-        <p class="other-cont" id="other1">Story 6</p>
-        <p class="other-cont" id="other2">Story 7</p>
-        <p class="other-cont" id="other3">Story 8</p>
-        <p class="other-cont" id="other4">Story 9</p>
-        <p class="other-cont" id="other5">Story 10</p>
+        <div class="other-cont" id="other1">
+            <p class="otherTitle" id="title5"></p>
+        </div>
+        <div class="other-cont" id="other2">
+            <p class="otherTitle" id="title6"></p>
+        </div>
+        <div class="other-cont" id="other3">
+            <p class="otherTitle" id="title7"></p>
+        </div>
+        <div class="other-cont" id="other4">
+            <p class="otherTitle" id="title8"></p>
+        </div>
+        <div class="other-cont" id="other5">
+            <p class="otherTitle" id="title9"></p>
+        </div>
     </div>
+    <script src="assets/js/script.js"></script> 
     <script
     src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.10.4/dayjs.min.js"
     integrity="sha512-0fcCRl828lBlrSCa8QJY51mtNqTcHxabaXVLPgw/jPA5Nutujh6CbTdDgRzl9aSPYW/uuE7c4SffFUQFBAy6lg=="
     crossorigin="anonymous"
   ></script>
-
-    <script src="assets/js/script.js"></script> 
-</body>
+  </body>
 </html>
 
-            
-
-
-  <!---- <div class="autoscroll-container">
-        <!-- Add more content here 
-    </div>
-    <div id="header-news" class="header-news"></div>
-    <div class="other-news">
-        <p class="other-cont" id="other1">Story 6</p>
-        <p class="other-cont" id="other2">Story 7</p>
-        <p class="other-cont" id="other3">Story 8</p>
-        <p class="other-cont" id="other4">Story 9</p>
-        <p class="other-cont" id="other5">Story 10</p>
-    </div>
-    <script src="assets/js/script.js"></script> -->
-</body>
-</html>

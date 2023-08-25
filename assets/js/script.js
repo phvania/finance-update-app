@@ -97,14 +97,42 @@ mainDisplay()
 }
 fetchGnewsSearch();*/
 
+
 function displayOther(data) {
     document.getElementById("other1").textContent = data.articles[5].title;
     document.getElementById("other2").textContent = data.articles[6].title;
     document.getElementById("other3").textContent = data.articles[7].title;
     document.getElementById("other4").textContent = data.articles[8].title;
     document.getElementById("other5").textContent = data.articles[9].title;
-}
 
+fetchGnewsSearch();
+
+// function that pulls api news data and displays it in other news div
+function displayOther(data) {
+    let other1Img = document.getElementById("other1");
+    let other2Img = document.getElementById("other2");
+    let other3Img = document.getElementById("other3");
+    let other4Img = document.getElementById("other4");
+    let other5Img = document.getElementById("other5");
+    let title5El = document.querySelector("#title5");
+    let title6El = document.querySelector("#title6");
+    let title7El = document.querySelector("#title7");
+    let title8El = document.querySelector("#title8");
+    let title9El = document.querySelector("#title9");
+
+    title5El.innerHTML = `<a href="${data.articles[5].url}" target="_blank">${data.articles[5].title}</a>`;
+    title6El.innerHTML = `<a href="${data.articles[6].url}" target="_blank">${data.articles[6].title}</a>`;
+    title7El.innerHTML = `<a href="${data.articles[7].url}" target="_blank">${data.articles[7].title}</a>`;
+    title8El.innerHTML = `<a href="${data.articles[8].url}" target="_blank">${data.articles[8].title}</a>`;
+    title9El.innerHTML = `<a href="${data.articles[9].url}" target="_blank">${data.articles[9].title}</a>`;
+
+    other1Img.style.backgroundImage = `url(${data.articles[5].image})`;
+    other2Img.style.backgroundImage = `url(${data.articles[6].image})`;
+    other3Img.style.backgroundImage = `url(${data.articles[7].image})`;
+    other4Img.style.backgroundImage = `url(${data.articles[8].image})`;
+    other5Img.style.backgroundImage = `url(${data.articles[9].image})`;
+
+}
 
 
 
