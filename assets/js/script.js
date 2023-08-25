@@ -1,5 +1,27 @@
 // script.js
 
+// fetching the api data 
+function fetchGnewsSearch() {
+    let apiKey = '776397213a7853bd2cde47a8d5d0d109';
+    let apiUrl = 'https://gnews.io/api/v4/top-headlines?category=business&lang=en&apikey=' + apiKey;
+
+    fetch(apiUrl)
+        .then(function (response) {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(function (data) {
+            console.log(data);
+            displayOther(data);
+        })
+        .catch(function (error) {
+            console.error('Fetch error:', error);
+        });
+}
+fetchGnewsSearch();
+
 const autoscrollContainer = document.querySelector('.autoscroll-container');
 
 
@@ -65,112 +87,13 @@ function autoScrollHeader(data) {
     ];
 
     document.getElementById("header-news").textContent = newsTitles[scrollIndex];
-    if(scrollIndex == 4) {
-    scrollIndex = 0
+    if (scrollIndex == 4) {
+        scrollIndex = 0
 
-} else {scrollIndex++}
+    } else { scrollIndex++ }
 }
 
-// Fetch news data and populate the "Other News" section
-function fetchGnewsSearch() {
-    let apiKey = 'c4f80c001d11db5f507256c8b1a12be4';
-    let apiUrl = 'https://gnews.io/api/v4/top-headlines?category=business&lang=en&apikey=' + apiKey;
-
-    fetch(apiUrl)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json();
-        })
-        .then(data => {
-            displayOtherNews(data);
-        })
-        .catch(error => {
-            console.error('Fetch error:', error);
-        });
-}
-fetchGnewsSearch();
-
-// Display news in the "Other News" section
-function displayOtherNews(data) {
-    document.getElementById("other1").textContent = data.articles[5].title;
-    document.getElementById("other2").textContent = data.articles[6].title;
-    document.getElementById("other3").textContent = data.articles[7].title;
-    document.getElementById("other4").textContent = data.articles[8].title;
-    document.getElementById("other5").textContent = data.articles[9].title;
-}
-
-
-/*function scrollToBottom() {
-    const autoscrollContainer = document.querySelector('.autoscroll-container');
-    autoscrollContainer.scrollTop = autoscrollContainer.scrollHeight;
-}
-
-function addNewsStory(title, content) {
-    const newsItem = document.createElement('div');
-    newsItem.classList.add('news-item');
-
-    const newsTitle = document.createElement('h2');
-    newsTitle.textContent = title;
-
-    const newsContent = document.createElement('p');
-    newsContent.textContent = content;
-
-    newsItem.appendChild(newsTitle);
-    newsItem.appendChild(newsContent);
-
-    autoscrollContainer.appendChild(newsItem);
-
-    scrollToBottom();
-}
-
-/*function mainDisplay() {
-    let apiKey = 'c4f80c001d11db5f507256c8b1a12be4';
-    let apiUrl = 'https://gnews.io/api/v4/top-headlines?category=business&lang=en&apikey=' + apiKey;
-
-    fetch(apiUrl)
-        .then(function (response) {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json();
-        })
-        .then(function (data) {
-            
-            mainDisplayResults(data)
-        })
-        .catch(function (error) {
-            console.error('Fetch error:', error);
-        });
-        function mainDisplayResults(data) {
-            for(i = 0; i < 5; i++)
-            console.log(data.articles[i])
-        }
-}
-mainDisplay()*/
-
-function fetchGnewsSearch() {
-    let apiKey = 'c4f80c001d11db5f507256c8b1a12be4';
-    let apiUrl = 'https://gnews.io/api/v4/top-headlines?category=business&lang=en&apikey=' + apiKey;
-
-    fetch(apiUrl)
-        .then(function (response) {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json();
-        })
-        .then(function (data) {
-            console.log(data);
-            displayOther(data);
-        })
-        .catch(function (error) {
-            console.error('Fetch error:', error);
-        });
-}
-fetchGnewsSearch();
-
+// function to display the title and background image of the other news stories (6-10)
 function displayOther(data) {
     let other1Img = document.getElementById("other1")
     let other2Img = document.getElementById("other2")
@@ -183,8 +106,8 @@ function displayOther(data) {
     other3Img.textContent = data.articles[7].title;
     other4Img.textContent = data.articles[8].title;
     other5Img.textContent = data.articles[9].title;
-    
-    
+
+
     other1Img.style.backgroundImage = `url(${data.articles[5].image})`;
     other2Img.style.backgroundImage = `url(${data.articles[6].image})`;
     other3Img.style.backgroundImage = `url(${data.articles[7].image})`;
@@ -193,9 +116,7 @@ function displayOther(data) {
 }
 
 
-
-
-let scrollIndex = 0; // Start with the first news title
+//let scrollIndex = 0; // Start with the first news title
 
 function autoScrollHeader(data) {
     const newsTitles = [
@@ -204,41 +125,8 @@ function autoScrollHeader(data) {
         data.articles[2].title,
         data.articles[3].title,
         data.articles[4].title
-    ]};
-
-function fetchNewsSearch() {
-let apiKey = 'c4f80c001d11db5f507256c8b1a12be4';
-let apiUrl = 'https://gnews.io/api/v4/top-headlines?category=business&lang=en&apikey=' + apiKey;
-
-fetch(apiUrl)
-    .then(function (response) {
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        return response.json();
-    })
-    .then(function (data) {
-        console.log(data)
-        //displayOtherNews(data)
-    })
-    .catch(function (error) {
-        console.error('Fetch error:', error);
-    });
-}
-
-/*function displayOtherNews(data) {
-    document.getElementById("other1").textContent = data.articles[5].title;
-    document.getElementById("other2").textContent = data.articles[6].title;
-    document.getElementById("other3").textContent = data.articles[7].title;
-    document.getElementById("other4").textContent = data.articles[8].title;
-    document.getElementById("other5").textContent = data.articles[9].title;
-  
-    document.getElementById("header-news").textContent = newsTitles[scrollIndex];
-
-    scrollIndex = (scrollIndex + 1) % newsTitles.length;
-}*/
-
-
+    ]
+};
 
 
 function createArticleElement(article) {
