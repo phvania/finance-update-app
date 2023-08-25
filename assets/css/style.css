@@ -1,44 +1,115 @@
-.body {
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: #5b5b5e;
-}
-
 .autoscroll-container {
-    width: 1000px;
-    height: 600px;
+    width: 300px;
+    height: 200px;
     overflow: auto;
-    border: 1px solid;
+    border: 1px solid #ccc;
     padding: 10px;
-    color: #ddd;
-    background-color: #5b5b5e;
-    font-family: sans-serif;
 }
 
 .news-item {
     margin-bottom: 20px;
-    border: 10px solid ;
+    border: 1px solid #eee;
     padding: 10px;
-    
 }
 
 .other-news {
-    width: 1000px;
+    width: 600px;
     height: 150px;
-    color: #ddd;
     white-space: nowrap;
     overflow-x: auto;
-    border: 1px solid ;
-    border-radius: 15px; 
+    border: 1px solid #ccc;
+    border-radius: 15px;
     margin-top: 30px;
-    font-family: sans-serif;
 }
 .other-cont {
     display: inline-block;
     padding: 15px;
     border: 1px solid #ddd;
     width: 200px;
-    height: 115px;
+    height: 50%;
     border-radius: 15px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* styling sidebar and header */
+header{
+    text-align: center;
+    bottom: -30px;
+    font-size: 20px;
+    position: relative;
+
+
+ }
+ /*.sidebar{
+   margin-top: 0px;
+    z-index: 1000;
+    top: 0;
+    right: 0;
+    margin-left: 1000px;
+    height: 110%;
+    width: 250px;
+    border: solid  4px;*/
+  /*.sidebar{
+    margin-left: 1100px;
+    height:450px;
+    width: 250px;
+    border: solid  4px; }*/
+
+    .sidebar{
+        height: 350px;
+        width: 250px;
+        border: solid  4px;
+        margin-left: 1075px;
+    }
+
+ 
+ .s1, .s2, .s3, .s4, .s5{
+     height: 40px;
+     width: 150px;
+    border: solid  2px;
+     border-radius: 10px;
+     
+    }
+ 
+ .today{
+    text-align: right;
+    margin-right: 40px;
+    top: 50px;
+
+ }
+
+ .open{
+    color: green;
+ }
+ .close{
+    color: orange;
+ }
+
+ .run{
+    margin-left: 1200px;
+ }
+
+ 
+
+.both{
+margin-left: 1200px;
+}
+
+ .search-container    {
+    text-align: left;
+    position: relative;
+    margin-bottom: 50px;
+    margin-left: 40px;
+    
+ } 
+ nav{
+    border-bottom:solid black ;
+    background-color: lightblue;
+ }
+ 
+
+
     background-size: cover; /* Ensure background image covers the div */
     background-position: center;
 }
@@ -63,4 +134,6 @@
 .otherTitle a:hover {
     overflow: visible;
     white-space: normal;
+}
+    
 }

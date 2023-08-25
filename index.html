@@ -7,8 +7,39 @@
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
+    <nav> <!--header start here-->
+    <header>
+      <h1>FINANCE-UPDATE-APP</h1>  
+    </header>
+      
+    <!--- current date and time-->
+    <p class="today" id="todayDate"> </p><p class="time" id="currentTime"></p>
+    <!-- time will be green  when stock market open it will be orange when stock market close-->
+    <div id="currentTime">
+        <p class="run">Time </p>
+    </div>   <!-- timer is here-->
+    <div class="both">
+    <button id="start">start</button>
+    <button id="stop">stop</button></div>
+    
+
+<!-- extra search button is here-->
+<div class=" search-container"></div>
+<input type="text" placeholder="search..." name="search">
+<button type ="submit"> <i class="fa fa-search"></i></button></nav>
+
+
+<!-- The sidebar-->
+<div class="right"></div>
+<div class="sidebar">
+    <input type="text" id="input"> <button id="serchbtn">search</button>
+        <p class="s1"> Stock 1</p>
+        <p class="s2"> Stock 2</p>
+        <p class="s3"> Stock 3</p>
+        <p class="s4"> Stock 4</p>
+        <p class="s5"> Stock 5</p>
+ </div>
     <div class="autoscroll-container">
-        <!-- Add more content here -->
         <div class="news-item">
             <h2 class="main-title">Article Title</h2>
             <img src="article-image.jpg" alt="Article Image">
@@ -34,5 +65,11 @@
         </div>
     </div>
     <script src="assets/js/script.js"></script> 
-</body>
+    <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.10.4/dayjs.min.js"
+    integrity="sha512-0fcCRl828lBlrSCa8QJY51mtNqTcHxabaXVLPgw/jPA5Nutujh6CbTdDgRzl9aSPYW/uuE7c4SffFUQFBAy6lg=="
+    crossorigin="anonymous"
+  ></script>
+  </body>
 </html>
+
