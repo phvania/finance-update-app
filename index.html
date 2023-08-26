@@ -1,75 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
+
 <body>
-    <nav> <!--header start here-->
     <header>
-      <h1>FINANCE-UPDATE-APP</h1>  
+        <form class="search-container">
+            <input type="text" id="search-input" placeholder="Keyword Search">
+            <button id="search-button">Search</button>
+        </form>
+        <h1 id="main-title">Finance Pal</h1>
+        <div id="time-display">11:11 PM</div>
     </header>
-      
-    <!--- current date and time-->
-    <p class="today" id="todayDate"> </p><p class="time" id="currentTime"></p>
-    <!-- time will be green  when stock market open it will be orange when stock market close-->
-    <div id="currentTime">
-        <p class="run">Time </p>
-    </div>   <!-- timer is here-->
-    <div class="both">
-    <button id="start">start</button>
-    <button id="stop">stop</button></div>
-    
-
-<!-- extra search button is here-->
-<div class=" search-container"></div>
-<input type="text" placeholder="search..." name="search">
-<button type ="submit"> <i class="fa fa-search"></i></button></nav>
-
-
-<!-- The sidebar-->
-<div class="right"></div>
-<div class="sidebar">
-    <input type="text" id="input"> <button id="serchbtn">search</button>
-        <p class="s1"> Stock 1</p>
-        <p class="s2"> Stock 2</p>
-        <p class="s3"> Stock 3</p>
-        <p class="s4"> Stock 4</p>
-        <p class="s5"> Stock 5</p>
- </div>
-    <div class="autoscroll-container">
-        <div class="news-item">
-            <h2 class="main-title">Article Title</h2>
-            <img src="article-image.jpg" alt="Article Image">
-            <p>Article content goes here...</p>
+    <div class="sidebar">
+        <div>
+            <input type="text" id="stock-input" placeholder="Search your stock ID">
+            <button id="search-stock">Search</button>
         </div>
+        <ul class="stock-list">
+
+        </ul>
     </div>
-    <div id="header-news" class="header-news"></div>
-    <div class="other-news">
-        <div class="other-cont" id="other1">
-            <p class="otherTitle" id="title5"></p>
+    <div class="main-hold">
+        <div class="autoscroll-container">
+            <!-- Add more content here -->
+            <div class="news-item">
+                <h2 id="display-title">Article Title</h2>
+                <!--<img src="article-image.jpg" alt="Article Image">-->
+                <p>Article content goes here...</p>
+            </div>
         </div>
-        <div class="other-cont" id="other2">
-            <p class="otherTitle" id="title6"></p>
+        <div id="header-news" class="header-news"></div>
+        <div class="other-news">
+            <div class="other-cont" id="other1">
+                <p class="otherTitle" id="title5"></p>
+            </div>
+            <div class="other-cont" id="other2">
+                <p class="otherTitle" id="title6"></p>
+            </div>
+            <div class="other-cont" id="other3">
+                <p class="otherTitle" id="title7"></p>
+            </div>
+            <div class="other-cont" id="other4">
+                <p class="otherTitle" id="title8"></p>
+            </div>
+            <div class="other-cont" id="other5">
+                <p class="otherTitle" id="title9"></p>
+            </div>
         </div>
-        <div class="other-cont" id="other3">
-            <p class="otherTitle" id="title7"></p>
-        </div>
-        <div class="other-cont" id="other4">
-            <p class="otherTitle" id="title8"></p>
-        </div>
-        <div class="other-cont" id="other5">
-            <p class="otherTitle" id="title9"></p>
-        </div>
-    </div>
-    <script src="assets/js/script.js"></script> 
-    <script
-    src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.10.4/dayjs.min.js"
-    integrity="sha512-0fcCRl828lBlrSCa8QJY51mtNqTcHxabaXVLPgw/jPA5Nutujh6CbTdDgRzl9aSPYW/uuE7c4SffFUQFBAy6lg=="
-    crossorigin="anonymous"
-  ></script>
-  </body>
+
+        <script src="https://cdn.jsdelivr.net/npm/dayjs@1.10.6/dayjs.min.js"></script>
+        <script src="assets/js/script.js"></script>
+</body>
+
 </html>
-

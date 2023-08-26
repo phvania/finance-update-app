@@ -3,6 +3,32 @@ let searchBar = document.querySelector("search-bar");
 let apiKey = '776397213a7853bd2cde47a8d5d0d109';
 let apiUrl = 'https://gnews.io/api/v4/search?q=stocks&category=business&lang=en&apikey=' + apiKey;
 
+const searchQuery = localStorage.getItem('searchQuery');
+
+if (searchQuery !=="")  {
+
+        const apiKey = "776397213a7853bd2cde47a8d5d0d109";
+        const apiUrl = 'https://gnews.io/api/v4/search?q=' + searchQuery + '&category=business&lang=en&apikey=' + apiKey;
+  
+          fetch(apiUrl)
+              .then(function (response) {
+                  if (!response.ok) {
+                      throw new Error('Network response was not ok');
+                  }
+                  return response.json();
+              })
+              .then(function (data) {
+                  console.log(data)
+                  displayOtherNews(data);
+              })
+              .catch(function (error) {
+                  console.error('Fetch error:', error);
+              });
+  
+      } else {
+        alert("Please enter a valid search term.");
+      }
+
 // function that will populate each search result under the search bar
 function displayOtherNews(data) {
     let results = document.querySelector(".search-results");
