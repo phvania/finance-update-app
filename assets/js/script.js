@@ -1,16 +1,114 @@
 // script.js
-//This is the time display  this is our final//
-var today = dayjs();
-document.querySelector('#todayDate').textContent = (today.format('MMM D, YYYY hh:mm:ss'));
+let stockSearchBtn = document.querySelector("#search-stock")
 
-//variable to store our intervalID
-let nIntervalID;
-function changeColorGreeen() {
-    if (!nIntervalID) {
-    nIntervalID = setInterval(flashText, 1000); // need to change
+function showCurrentDate() {
+    let currentDate = dayjs();
+    let timeDisplay = document.getElementById("time-display");
+    let formattedTime = currentDate.format("hh:mm A");
+    let startTime = dayjs("09:30 AM", "hh:mm A");
+    let endTime = dayjs("04:00 PM", "hh:mm A");
+    let statusText = "";
+
+    if (currentDate.isAfter(startTime) && currentDate.isBefore(endTime)) {
+        timeDisplay.style.color = "green";
+        statusText = "Open";
+    } else {
+        timeDisplay.style.color = "orange";
+        statusText = "Closed";
+    }
+    timeDisplay.textContent = formattedTime + " (" + statusText + ")";
 }
 
+
+setInterval(showCurrentDate, 1000);
+
+// Stock search input that takes the stock symbol and pulls its data
+stockSearchBtn.addEventListener("click", function (event) {
+    event.preventDefault();
+  
+    let stockInput = document.querySelector("#stock-input").value.trim();
+    let stockDate = dayjs().format("YYYY-MM-DD");
+
+    if (stockInput !== "") {
+        let selectedDate = dayjs(stockDate);
+        let dayOfWeek = selectedDate.day();
+        
+        //check if the current day is sunday or saturday, if yes then move back to the most recent friday
+        if (dayOfWeek === 6 || dayOfWeek === 0) {
+            if (dayOfWeek === 0) {
+                selectedDate = selectedDate.subtract(2, 'day');
+            } else {
+                selectedDate = selectedDate.subtract(1, 'day'); 
+            }
+        }
+        
+
+        let apiKey = 'API_KEYdcR2OM8AOV2TJET1N345V7QU22QLOMD2';
+        let apiUrl = 'https://api.finage.co.uk/history/stock/open-close?stock=' + stockInput +  '&date=' + selectedDate.format("YYYY-MM-DD") + '&apikey=' + apiKey;
+
+        fetch(apiUrl)
+            .then(function (response) {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(function (data) {
+                console.log(data);
+                displayStockData(data);
+            })
+            .catch(function (error) {
+                console.error('Fetch error:', error);
+            });
+
+    } else {
+      alert("Please enter a valid search term.");
+    }
+});
+
+
+  // function to display the data of a searched stock
+function displayStockData(data) {
+    let stockDisplay = document.querySelector(".stock-list");
+    stockDisplay.innerHTML = '';
+
+    let stockResult = document.createElement("p");
+    stockResult.className = "stock-result";
+    let nameEl = document.createElement("h4");
+    nameEl.className = "stock-name";
+    let openEl = document.createElement("li");
+    let closeEl = document.createElement("li");
+    let highEl = document.createElement("li");
+    let lowEl = document.createElement("li");
+
+    stockResult.appendChild(nameEl);
+    stockResult.appendChild(openEl);
+    stockResult.appendChild(closeEl);
+    stockResult.appendChild(highEl);
+    stockResult.appendChild(lowEl);
+    stockDisplay.appendChild(stockResult);
+
+    nameEl.textContent = data.symbol;
+    openEl.textContent = "OPEN: " + data.open;
+    closeEl.textContent = "CLOSE: " + data.close;
+    highEl.textContent = "HIGH: " + data.high;
+    lowEl.textContent = "LOW: " + data.low;
 }
+
+let searchForm = document.querySelector('.search-container');
+let searchInput = document.getElementById('search-input');
+
+searchForm.addEventListener('submit', function(event) {
+    event.preventDefault();
+    let extendedSearch = searchInput.value;
+    localStorage.setItem('searchQuery', extendedSearch);
+    searchInput.value = '';
+    window.location.href = 'index1.html';
+});
+
+function fetchGnewsSearch() {
+    let apiKey = '776397213a7853bd2cde47a8d5d0d109';
+    let apiUrl = 'https://gnews.io/api/v4/top-headlines?category=business&lang=en&apikey=' + apiKey;
 
     fetch(apiUrl)
         .then(function (response) {
@@ -21,56 +119,22 @@ function changeColorGreeen() {
         })
         .then(function (data) {
             console.log(data);
-            addNewsStory(data);
             displayOther(data);
         })
         .catch(function (error) {
             console.error('Fetch error:', error);
         });
-        
-
-function flashText() {
-    const oElem = document.getElementById(currentTime);
-    oElem.className = oElem.className ==="open"? "stop" : "open";
 }
- 
-function changeColorOrange() {
-    clearInterval(nIntervalID);
-    //release our intervalID from the variable
-    nIntervalID = null;
-
-}
-
-document.getElementById("open").addEventListener("click",changeColorGreeen);
-document.getElementById("close").addEventListener("click",changeColorOrange);
 
 const autoscrollContainer = document.querySelector('.autoscroll-container');
 
 function scrollToBottom() {
     const autoscrollContainer = document.querySelector('.autoscroll-container');
     autoscrollContainer.scrollTop = autoscrollContainer.scrollHeight;
-} 
-
-function addNewsStory(title, content) {
-    const newsItem = document.createElement('div');
-    newsItem.classList.add('news-item');
-
-    const newsTitle = document.createElement('h2');
-    newsTitle.textContent = title;
-
-    const newsContent = document.createElement('p');
-    newsContent.textContent = content;
-
-    newsItem.appendChild(newsTitle);
-    newsItem.appendChild(newsContent);
-
-    autoscrollContainer.appendChild(newsItem);
-
-    scrollToBottom();
 }
 
 function mainDisplay() {
-    let apiKey = 'c4f80c001d11db5f507256c8b1a12be4';
+    let apiKey = '776397213a7853bd2cde47a8d5d0d109';
     let apiUrl = 'https://gnews.io/api/v4/top-headlines?category=business&lang=en&apikey=' + apiKey;
 
     fetch(apiUrl)
@@ -92,37 +156,7 @@ function mainDisplay() {
             console.log(data.articles[i])
         }
 }
-mainDisplay()
-
-/*function fetchGnewsSearch() {
-    let apiKey = 'c4f80c001d11db5f507256c8b1a12be4';
-    let apiUrl = 'https://gnews.io/api/v4/top-headlines?category=business&lang=en&apikey=' + apiKey;
-
-    fetch(apiUrl)
-        .then(function (response) {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json();
-        })
-        .then(function (data) {
-            console.log(data);
-            displayOther(data);
-        })
-        .catch(function (error) {
-            console.error('Fetch error:', error);
-        });
-}
-fetchGnewsSearch();*/
-
-
-function displayOther(data) {
-    document.getElementById("other1").textContent = data.articles[5].title;
-    document.getElementById("other2").textContent = data.articles[6].title;
-    document.getElementById("other3").textContent = data.articles[7].title;
-    document.getElementById("other4").textContent = data.articles[8].title;
-    document.getElementById("other5").textContent = data.articles[9].title;
-
+mainDisplay();
 fetchGnewsSearch();
 
 // function that pulls api news data and displays it in other news div
@@ -152,8 +186,6 @@ function displayOther(data) {
 
 }
 
-
-
 let scrollIndex = 0; // Start with the first news title
 
 function autoScrollHeader(data) {
@@ -164,41 +196,6 @@ function autoScrollHeader(data) {
         data.articles[3].title,
         data.articles[4].title
     ]};
-
-function fetchGnewsSearch() {
-let apiKey = '776397213a7853bd2cde47a8d5d0d109';
-let apiUrl = 'https://gnews.io/api/v4/top-headlines?category=business&lang=en&apikey=' + apiKey;
-
-fetch(apiUrl)
-    .then(function (response) {
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        return response.json();
-    })
-    .then(function (data) {
-        console.log(data)
-        displayOtherNews(data)
-    })
-    .catch(function (error) {
-        console.error('Fetch error:', error);
-    });
-}
-
-function displayOtherNews(data) {
-    document.getElementById("other1").textContent = data.articles[5].title;
-    document.getElementById("other2").textContent = data.articles[6].title;
-    document.getElementById("other3").textContent = data.articles[7].title;
-    document.getElementById("other4").textContent = data.articles[8].title;
-    document.getElementById("other5").textContent = data.articles[9].title;
-  
-    document.getElementById("header-news").textContent = newsTitles[scrollIndex];
-
-    scrollIndex = (scrollIndex + 1) % newsTitles.length;
-}
-
-
-
 
 function createArticleElement(article) {
     const articleElement = document.createElement('div');
@@ -220,4 +217,3 @@ function createArticleElement(article) {
 
     return articleElement;
 }
-
