@@ -129,7 +129,7 @@ searchForm.addEventListener('submit', function (event) {
 
 // fetch to get api data for other news scrollable div
 function fetchGnewsSearch() {
-    let apiKey = '51618f13bb4d86b0dab9c98a7263a01a';
+    let apiKey = 'c4f80c001d11db5f507256c8b1a12be4';
     let apiUrl = 'https://gnews.io/api/v4/top-headlines?category=business&lang=en&apikey=' + apiKey;
 
     fetch(apiUrl)
@@ -150,7 +150,7 @@ function fetchGnewsSearch() {
 
 
 function mainDisplay() {
-    let apiKey = '51618f13bb4d86b0dab9c98a7263a01a';
+    let apiKey = 'c4f80c001d11db5f507256c8b1a12be4';
     let apiUrl = 'https://gnews.io/api/v4/top-headlines?category=business&lang=en&apikey=' + apiKey;
 
     fetch(apiUrl)

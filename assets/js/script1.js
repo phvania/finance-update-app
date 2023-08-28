@@ -5,7 +5,7 @@ let searchQuery = localStorage.getItem('searchQuery');
 // if something is searched run the fetch and add the keyword to the url
 if (searchQuery !== "") {
 
-    const apiKey = "51618f13bb4d86b0dab9c98a7263a01a";
+    const apiKey = "c4f80c001d11db5f507256c8b1a12be4";
     const apiUrl = 'https://gnews.io/api/v4/search?q=' + searchQuery + '&category=business&lang=en&apikey=' + apiKey;
 
     fetch(apiUrl)
