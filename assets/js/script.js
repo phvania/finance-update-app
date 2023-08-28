@@ -1,50 +1,54 @@
-// script.js
-let stockSearchBtn = document.querySelector("#search-stock")
 
-function showCurrentDate() {
+// Using dayjs to display the current time and check if the current time is between 9:30am and 4pm to display green text symbolizing open stock market
+function showCurrentTime() {
     let currentDate = dayjs();
     let timeDisplay = document.getElementById("time-display");
     let formattedTime = currentDate.format("hh:mm A");
-    let startTime = dayjs("09:30 AM", "hh:mm A");
-    let endTime = dayjs("04:00 PM", "hh:mm A");
-    let statusText = "";
+    let today = dayjs().format("YYYY-MM-DD");
+    let startTime = dayjs(today + " 09:30 AM", "YYYY-MM-DD hh:mm A");
+    let endTime = dayjs(today + " 04:00 PM", "YYYY-MM-DD hh:mm A");
+    let status = "";
 
     if (currentDate.isAfter(startTime) && currentDate.isBefore(endTime)) {
         timeDisplay.style.color = "green";
-        statusText = "Open";
+        status = "Open";
     } else {
         timeDisplay.style.color = "orange";
-        statusText = "Closed";
+        status = "Closed";
     }
-    timeDisplay.textContent = formattedTime + " (" + statusText + ")";
+    timeDisplay.textContent = formattedTime + " (" + status + ")";
 }
 
-
-setInterval(showCurrentDate, 1000);
+setInterval(showCurrentTime, 1000);
 
 // Stock search input that takes the stock symbol and pulls its data
+let stockSearchBtn = document.querySelector("#search-stock")
+let stockDisplay = document.querySelector(".stock-list");
+let stocksQueue = [];
+
 stockSearchBtn.addEventListener("click", function (event) {
     event.preventDefault();
-  
+
     let stockInput = document.querySelector("#stock-input").value.trim();
     let stockDate = dayjs().format("YYYY-MM-DD");
 
     if (stockInput !== "") {
         let selectedDate = dayjs(stockDate);
         let dayOfWeek = selectedDate.day();
-        
-        //check if the current day is sunday or saturday, if yes then move back to the most recent friday
-        if (dayOfWeek === 6 || dayOfWeek === 0) {
-            if (dayOfWeek === 0) {
+
+        // Check if the current day is Sunday or Saturday, if yes then move back to the most recent Friday
+        if (dayOfWeek === 0 || dayOfWeek === 1) {
+            if (dayOfWeek === 1) {
+                selectedDate = selectedDate.subtract(3, 'day');
+            } if (dayOfWeek = 0) {
                 selectedDate = selectedDate.subtract(2, 'day');
             } else {
-                selectedDate = selectedDate.subtract(1, 'day'); 
+                selectedDate = selectedDate.subtract(1, 'day');
             }
         }
-        
 
-        let apiKey = 'API_KEYdcR2OM8AOV2TJET1N345V7QU22QLOMD2';
-        let apiUrl = 'https://api.finage.co.uk/history/stock/open-close?stock=' + stockInput +  '&date=' + selectedDate.format("YYYY-MM-DD") + '&apikey=' + apiKey;
+        let apiKey = 'API_KEY0dckers4WwD4tBA6ytiqbVOIemH8CADttHzQV8PCa9Qu0l';
+        let apiUrl = 'https://api.finage.co.uk/history/stock/open-close?stock=' + stockInput + '&date=' + selectedDate.format("YYYY-MM-DD") + '&apikey=' + apiKey;
 
         fetch(apiUrl)
             .then(function (response) {
@@ -55,24 +59,29 @@ stockSearchBtn.addEventListener("click", function (event) {
             })
             .then(function (data) {
                 console.log(data);
+                // Calling the function to display the stock data and store it in the local storage
                 displayStockData(data);
+                localStorage.setItem("stockData", JSON.stringify(data));
             })
             .catch(function (error) {
                 console.error('Fetch error:', error);
             });
 
     } else {
-      alert("Please enter a valid search term.");
+        alert("Please enter a valid search term.");
     }
 });
 
+// Retrieve and display stored stock data from local storage, if it is a value it will display the stock
+let storedStockData = JSON.parse(localStorage.getItem("stockData"));
+if (storedStockData) {
+    displayStockData(storedStockData);
+}
 
-  // function to display the data of a searched stock
 function displayStockData(data) {
-    let stockDisplay = document.querySelector(".stock-list");
     stockDisplay.innerHTML = '';
 
-    let stockResult = document.createElement("p");
+    let stockResult = document.createElement("div");
     stockResult.className = "stock-result";
     let nameEl = document.createElement("h4");
     nameEl.className = "stock-name";
@@ -86,19 +95,31 @@ function displayStockData(data) {
     stockResult.appendChild(closeEl);
     stockResult.appendChild(highEl);
     stockResult.appendChild(lowEl);
-    stockDisplay.appendChild(stockResult);
 
     nameEl.textContent = data.symbol;
     openEl.textContent = "OPEN: " + data.open;
     closeEl.textContent = "CLOSE: " + data.close;
     highEl.textContent = "HIGH: " + data.high;
     lowEl.textContent = "LOW: " + data.low;
+
+    // adds most recent stock to beginning of list and removes the oldest one
+    stocksQueue.unshift(stockResult);
+    if (stocksQueue.length > 3) {
+        stocksQueue.pop();
+    }
+
+    // Display the stocks in the queue
+    stocksQueue.forEach(function (stock) {
+        stockDisplay.appendChild(stock);
+    });
 }
 
-let searchForm = document.querySelector('.search-container');
-let searchInput = document.getElementById('search-input');
 
-searchForm.addEventListener('submit', function(event) {
+
+// add an event listener to the keyword search input, on submit it will send the input into local storage where it will be used by the search bar on index1.html
+let searchForm = document.querySelector(".search-container")
+let searchInput = document.querySelector("#search-input")
+searchForm.addEventListener('submit', function (event) {
     event.preventDefault();
     let extendedSearch = searchInput.value;
     localStorage.setItem('searchQuery', extendedSearch);
@@ -106,8 +127,9 @@ searchForm.addEventListener('submit', function(event) {
     window.location.href = 'index1.html';
 });
 
+// fetch to get api data for other news scrollable div
 function fetchGnewsSearch() {
-    let apiKey = '776397213a7853bd2cde47a8d5d0d109';
+    let apiKey = '51618f13bb4d86b0dab9c98a7263a01a';
     let apiUrl = 'https://gnews.io/api/v4/top-headlines?category=business&lang=en&apikey=' + apiKey;
 
     fetch(apiUrl)
@@ -126,15 +148,9 @@ function fetchGnewsSearch() {
         });
 }
 
-const autoscrollContainer = document.querySelector('.autoscroll-container');
-
-function scrollToBottom() {
-    const autoscrollContainer = document.querySelector('.autoscroll-container');
-    autoscrollContainer.scrollTop = autoscrollContainer.scrollHeight;
-}
 
 function mainDisplay() {
-    let apiKey = '776397213a7853bd2cde47a8d5d0d109';
+    let apiKey = '51618f13bb4d86b0dab9c98a7263a01a';
     let apiUrl = 'https://gnews.io/api/v4/top-headlines?category=business&lang=en&apikey=' + apiKey;
 
     fetch(apiUrl)
@@ -145,17 +161,52 @@ function mainDisplay() {
             return response.json();
         })
         .then(function (data) {
-            
             mainDisplayResults(data)
         })
         .catch(function (error) {
             console.error('Fetch error:', error);
         });
-        function mainDisplayResults(data) {
-            for(i = 0; i < 5; i++)
-            console.log(data.articles[i])
+
+    function mainDisplayResults(data) {
+        let headEl = document.getElementById("display-title");
+        let mainContainer = document.querySelector(".news-item");
+        let descriptionEl = document.getElementById("main-description");
+
+        var articlesData = [
+            { title: data.articles[0].title, description: data.articles[0].description, image: data.articles[0].image },
+            { title: data.articles[1].title, description: data.articles[1].description, image: data.articles[1].image },
+            { title: data.articles[2].title, description: data.articles[2].description, image: data.articles[2].image },
+            { title: data.articles[3].title, description: data.articles[3].description, image: data.articles[3].image },
+            { title: data.articles[4].title, description: data.articles[4].description, image: data.articles[4].image }
+        ];
+
+        let index = 0; // Start with the first article
+        let currentArticle = articlesData[index];
+
+        headEl.textContent = currentArticle.title;
+        descriptionEl.textContent = currentArticle.description;
+        mainContainer.style.backgroundImage = `url(${currentArticle.image})`;
+
+        function navigate() {
+            index = (index + 1) % articlesData.length;
+            currentArticle = articlesData[index];
+            headEl.textContent = currentArticle.title;
+            descriptionEl.textContent = currentArticle.description;
+            mainContainer.style.backgroundImage = `url(${currentArticle.image})`;
+            headEl.innerHTML = `<a href="${data.articles[index].url}" target="_blank">${currentArticle.title}</a>`;
         }
+
+        function startAutoscroll() {
+            navigate();
+            setInterval(navigate, 20000);
+        }
+
+        // starts the interval to autoscroll
+        startAutoscroll();
+    }
 }
+
+
 mainDisplay();
 fetchGnewsSearch();
 
@@ -184,36 +235,4 @@ function displayOther(data) {
     other4Img.style.backgroundImage = `url(${data.articles[8].image})`;
     other5Img.style.backgroundImage = `url(${data.articles[9].image})`;
 
-}
-
-let scrollIndex = 0; // Start with the first news title
-
-function autoScrollHeader(data) {
-    const newsTitles = [
-        data.articles[0].title,
-        data.articles[1].title,
-        data.articles[2].title,
-        data.articles[3].title,
-        data.articles[4].title
-    ]};
-
-function createArticleElement(article) {
-    const articleElement = document.createElement('div');
-    articleElement.classList.add('news-article');
-
-    const newsImage = document.createElement('img');
-    newsImage.src = article.urlToImage;
-    newsImage.alt = article.title;
-
-    const newsTitle = document.createElement('h2');
-    newsTitle.textContent = article.title;
-
-    const newsDescription = document.createElement('p');
-    newsDescription.textContent = article.description;
-
-    articleElement.appendChild(newsImage);
-    articleElement.appendChild(newsTitle);
-    articleElement.appendChild(newsDescription);
-
-    return articleElement;
 }

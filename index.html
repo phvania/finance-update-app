@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
@@ -15,11 +16,12 @@
             <button id="search-button">Search</button>
         </form>
         <h1 id="main-title">Finance Pal</h1>
-        <div id="time-display">11:11 PM</div>
+        <div id="time-display">00:00 AM</div>
     </header>
     <div class="sidebar">
-        <div>
-            <input type="text" id="stock-input" placeholder="Search your stock ID">
+        <h3 id="sidebar-title">My Top Stocks</h3>
+        <div id="stock-search-input">
+            <input type="text" id="stock-input" placeholder="Stock ID">
             <button id="search-stock">Search</button>
         </div>
         <ul class="stock-list">
@@ -31,8 +33,9 @@
             <!-- Add more content here -->
             <div class="news-item">
                 <h2 id="display-title">Article Title</h2>
-                <!--<img src="article-image.jpg" alt="Article Image">-->
-                <p>Article content goes here...</p>
+            </div>
+            <div id="main-description">
+                Description Text Here
             </div>
         </div>
         <div id="header-news" class="header-news"></div>
