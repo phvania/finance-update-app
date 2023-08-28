@@ -12,7 +12,8 @@ The header has a live time that will light up green when the stock market is ope
 ## Executing program
 Website link: https://phvania.github.io/finance-update-app/
 
-
+link to presentation--
+https://docs.google.com/presentation/d/e/2PACX-1vSsOFhutdEzC07pOIl3NFbiBRxWxka-dofQa4Tm15Nh2nv__sZ6Smq40Dx_lq7R-w03t5ac0f1didbU/pub?start=true&loop=true&delayms=5000
 ## Photo of deployed website
 ![My Image](./images/Screenshot%202023-08-28%20at%2010.19.12%20AM.png)
 
