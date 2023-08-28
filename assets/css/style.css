@@ -100,12 +100,7 @@ header {
 
 .sidebar {
     height: 589px;
-<<<<<<< HEAD
-    width: 260px;
-    border: solid 5px;
-=======
     width: 245px;
->>>>>>> 106caf443be96036af1f28537631728f1ed78620
     display: flex;
     position: absolute;
     right: 8px;
