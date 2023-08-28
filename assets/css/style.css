@@ -1,6 +1,6 @@
 body {
     font-family: Arial, Helvetica, sans-serif;
-    /*background-color: #251101;*/
+    background-color: #5b5b5e;
 }
 
 .autoscroll-container {
@@ -8,11 +8,14 @@ body {
     height: 390px;
     overflow: auto;
     border: 1px solid #ccc;
+    border-radius: 0px 15px;
     padding: 10px;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: space-between;
     right: 300px;
     margin-top: 5px;
+    background-color: black;
 }
 
 .main-hold {
@@ -24,10 +27,35 @@ body {
     margin-right: 250px;
 }
 
-.news-item {
+#main-description {
+    display: flex;
+    color: lightgray;
+    width: 90%;
+    margin-left: 15px;
     margin-bottom: 20px;
+}
+
+#display-title {
+    background-color: black;
+    opacity: 70%;
+    color: white;
+    border-radius: 10px;
+    padding: 5px;
+}
+
+#display-title a {
+    text-decoration: none;
+    color: white;
+}
+
+.news-item {
     border: 1px solid #eee;
+    border-radius: 0px 15px;
     padding: 10px;
+    width: 95%;
+    height: 300px;
+    background-size: cover;
+    align-self: center;
 }
 
 /* styling sidebar and header */
@@ -61,6 +89,10 @@ header {
     margin-right: 100px;
 }
 
+header {
+    border-radius: 0px 15px;
+}
+
 #time-display {
     font-size: 18px;
     margin-right: 20px;
@@ -68,50 +100,70 @@ header {
 
 .sidebar {
     height: 589px;
+<<<<<<< HEAD
     width: 260px;
     border: solid 5px;
+=======
+    width: 245px;
+>>>>>>> 106caf443be96036af1f28537631728f1ed78620
     display: flex;
     position: absolute;
     right: 8px;
     justify-content: center;
     display: inline-block;
+    background-color: gray;
+    border-radius: 0px 15px;
+    margin-top: 5px;
+}
+
+#sidebar-title {
+    display: flex;
+    position: relative;
+    border: solid black 2px;
+    background-color: black;
+    color: white;
+    justify-content: center;
+    padding: 5px;
+    bottom: 20px;
+    border-radius: 0px 15px 0px 0px;
 }
 
 .stock-result {
     background-image: linear-gradient(darkgray, black);
     color: white;
-    border-radius: 15px;
+    border-radius: 0px 15px;
     padding-left: 30px;
     padding-bottom: 30px;
+    margin-top: 30px;
     position: relative;
     right: 20px;
     display: flex;
     flex-direction: column;
+    bottom: 20px;
+    max-height: 100px;
 }
 
 .stock-result li {
     list-style: none;
+    position: relative;
+    bottom: 20px;
 }
 
 #search-input {
     margin-top: 5px;
 }
 
+#search-stock {
+    position: relative;
+    bottom: 25px;
+}
+
 #stock-input {
     margin-top: 5px;
     margin-left: 20px;
-}
-
-.s1,
-.s2,
-.s3,
-.s4,
-.s5 {
-    height: 40px;
-    width: 150px;
-    border: solid 2px;
-    border-radius: 10px;
-
+    position: relative;
+    bottom: 25px;
+    width: 100px;
 }
 
 .today {
@@ -119,22 +171,6 @@ header {
     margin-right: 40px;
     top: 50px;
 
-}
-
-.open {
-    color: green;
-}
-
-.close {
-    color: orange;
-}
-
-.run {
-    margin-left: 1200px;
-}
-
-.both {
-    margin-left: 1200px;
 }
 
 .search-container {
@@ -202,3 +238,106 @@ nav {
     margin-right: 10px;
     margin-left: 10px;
 }
+
+@media only screen and (max-width: 1080px) {
+    .sidebar {
+        display: flex;
+        position: relative;
+        width: 100%;
+        height: 245px;
+        margin-left: 10px;
+        margin-bottom: 10px;
+    }
+
+    #sidebar-title {
+        display: flex;
+        position: absolute;
+        width: 99%;
+        height: 25px;
+        top: -20px;
+    }
+
+    #stock-search-input {
+        display: inline;
+        position: absolute;
+        right: 10px;
+        top: 25px;
+
+    }
+
+    .stock-result {
+        flex-direction: row;
+        display: inline-block;
+        position: relative;
+        top: 25px;
+        padding-right: 25px;
+        padding-bottom: 40px;
+        justify-content: space-between;
+        margin: 20px;
+    }
+
+    .autoscroll-container {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        left: 0px;
+        width: 90%;
+        align-items: center;
+    }
+
+    .main-hold {
+        justify-content: center;
+        width: 100%;
+        display: flex;
+    }
+
+    .news-item {
+        width: 95%;
+        margin-right: 10px;
+        height: 300px;
+    }
+
+    #main-description {
+        display: flex;
+        color: lightgray;
+        height: 50px;
+        width: 95%;
+        margin-top: 10px;
+    }
+  }
+
+  @media only screen and (max-width: 775px) {
+    header {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    #main-title {
+        position: relative;
+        right: -50px;
+    }
+
+    #time-display {
+        position: relative;
+        right: -10px;
+    }
+
+    .search-container {
+        position: relative;
+        right: 20px;
+    }
+
+    #sidebar-title {
+        justify-content: flex-start;
+    }
+
+    .stock-list {
+        white-space: nowrap;
+        overflow-x: auto;
+    }
+
+    .other-news {
+        width: 90%;
+    }
+  }
